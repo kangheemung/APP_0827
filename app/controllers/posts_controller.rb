@@ -2,15 +2,16 @@ class PostsController < ApplicationController
   def index
     @post=Post.new
     @posts=Post.all
+    p "user info========================"
+    puts current_user.posts
+    p "user info========================"
  end
   def show
     @post=Post.find(params[:id])
   end
   def create
-     post = Post.new(post_params)
-     post.user_id= session[:user_id]
+     post = current_user.posts.build(post_params)
       if post.save
-        session[:user]
         redirect_to root_path
       else
         render :new

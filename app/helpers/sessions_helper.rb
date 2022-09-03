@@ -4,4 +4,8 @@ module SessionsHelper
             User.find(session[:user_id])
         end
     end
+
+    def login(user)
+        session[:user_id] = user.id
+    end
 end
